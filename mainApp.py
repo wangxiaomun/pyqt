@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel,QPushButton
 from PyQt5.QtWidgets import QVBoxLayout,QHBoxLayout,QProxyStyle
-from PyQt5.QtGui import QIcon
+from WiFiController import WiFiController
 
 class mainUI(QWidget):
     def __init__(self):
@@ -12,10 +12,12 @@ class mainUI(QWidget):
         self.rigthlist = QVBoxLayout()
         self.rigthlist.addSpacing(20)
 
+        self.wificontroller = WiFiController()
+
         self.leftlist.addWidget(QPushButton("one"))
         self.leftlist.addWidget(QPushButton("three"))
         self.leftlist.addWidget(QPushButton("five"))
-        self.leftlist.addWidget(QPushButton("seven"))
+        self.leftlist.addWidget(self.wificontroller)
 
         self.rigthlist.addWidget(QPushButton("two"))
         self.rigthlist.addWidget(QPushButton("four"))
@@ -30,7 +32,7 @@ class mainUI(QWidget):
         self.setLayout(hbox)
         self.setGeometry(300, 300, 800, 480)
         self.setStyleSheet("""
-                .QPushButton {
+                .QPushButton,.WiFiController {
                     background:  rgb(66, 184, 221); /* #4CAF50;  Green */
                     color: white;
                     padding: 20px 40px;
@@ -46,7 +48,6 @@ class mainUI(QWidget):
 
                 """)
         self.show()
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
